@@ -7,6 +7,6 @@
 **Используемые технологии:**
 адаптивная верстка, файловая структура по БЭМ, элемпентарные функции js, работа с ветками
 
-[Ссылка на сайт gh](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4)
+[Ссылка на сайт gh](https://burlav97.github.io/mesto/index.html)
 
 
