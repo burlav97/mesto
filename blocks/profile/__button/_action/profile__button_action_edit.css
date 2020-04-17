@@ -1,0 +1,26 @@
+.profile__button_action_edit {
+background-color: #000;
+margin: 0 0 0 24px;
+border: 0;
+padding: 0;
+cursor: pointer;
+line-height: 0;
+}
+.profile__button_action_edit:focus {
+    border: 0;
+}
+
+@media screen and (min-width : 768px) and (max-width : 1023px) {
+    .profile__button_action_edit  {
+        width: 22px;
+        height: 33px;
+        margin: 0 0 0 14px;
+    }
+ }
+ @media screen and (max-width : 767px) {
+    .profile__button_action_edit  {
+        width: 22px;
+        height: 33px;
+        margin: 0 0 0 5px;
+    }
+ }
