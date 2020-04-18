@@ -5,6 +5,7 @@
     line-height: 1.8rem;
     margin: 0 0 54px;
     align-self: flex-start;
+    font-family: 'Inter', Arial, sans-serif;
 }
 @media screen and (max-width: 767px) {
     .popup__title {

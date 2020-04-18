@@ -2,44 +2,35 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./pages/index.css">
     <link href="./fonts/inter.css" rel="stylesheet">
+    <link rel="stylesheet" href="./pages/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="4 спринт">
     <meta name="keywords" content="Россия Место">
-    <meta name="author" content="Настя Бурлуцкая">    
+    <meta name="author" content="Настя Бурлуцкая">
     <title>Mesto</title>
 </head>
-<body class="root">    
+<body class="root">
 
     <div class="page">
-        <section class="popup">
-            <form class="popup__container">
-                <button class="popup__button popup__button_action_close" type="submit"></button>
-                <h3 class="popup__title">Редактировать профиль</h3>
-                <input type="text" class="popup__item popup__item_el_name" name="name" placeholder="" required>
-                <input type="text" class="popup__item popup__item_el_about-yourself"  name="about-yourself" placeholder="" required>
-                <button class="popup__button popup__button_action_save" type="submit">Сохранить</button>    
-            </form>
-    
-        </section>
+
 
         <header class="header">
-            <div class="logo "></div>        
+            <div class="logo "></div>
         </header>
-    
+
 
         <main class="content">
             <section class="profile">
                 <div class="profile__container">
                     <img class="profile__avatar" src="./images/jak-iv-custo.jpg" alt="Аватар">
                     <div class="profile__info">
-                            <div class="profile__edit-container"><h2 class="profile__title">Жак-Ив Кусто</h2> <button class="profile__button profile__button_action_edit"><img class="profile__icon_view_pen" src="./images/edit-button.svg" 
+                            <div class="profile__edit-container"><h2 class="profile__title">Жак-Ив Кусто</h2> <button class="profile__button-edit"><img class="profile__icon_view_pen" src="./images/edit-button.svg"
                                 alt="Кнопка редактирования файла"></button> </div>
-                            <p class="profile__subtitle">Исследователь океана</p>                    
-                    </div>                    
+                            <p class="profile__subtitle">Исследователь океана</p>
+                    </div>
                 </div>
-                <button class="profile__button profile__button_action_add"><img class="profile__icon_view_plus" src="./images/plus.svg" alt="Плюс"></button>                             
+                <button class="profile__button-add" type="button"><img class="profile__icon profile__icon_view_plus" src="./images/plus.svg" alt="Плюс"></button>
             </section>
 
             <section class="elements">
@@ -48,51 +39,61 @@
                         <img class="cards__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
                         <div class="cards__description">
                         <h4 class="cards__title">Карачаевск</h4>
-                        <button class="cards__button_action_like"><img src="./images/like.svg" alt="like"></button>
+                        <button class="cards__button-like"><img src="./images/like.svg" alt="like"></button>
                         </div>
                     </li>
                     <li class="cards__item">
                         <img class="cards__image" src="./images/elbrus.jpg" alt="Эльбрус">
                         <div class="cards__description">
                         <h4 class="cards__title">Гора Эльбрус</h4>
-                        <button class="cards__button_action_like"><img src="./images/like.svg" alt="like"></button>
+                        <button class="cards__button-like"><img src="./images/like.svg" alt="like"></button>
                         </div>
                     </li>
                     <li class="cards__item">
                         <img class="cards__image" src="./images/dombai.jpg" alt="Домбай">
                         <div class="cards__description">
                         <h4 class="cards__title">Домбай</h4>
-                        <button class="cards__button_action_like"><img src="./images/like.svg" alt="like"></button>
+                        <button class="cards__button-like"><img src="./images/like.svg" alt="like"></button>
                         </div>
                     </li>
                     <li class="cards__item">
                         <img class="cards__image" src="./images/elbrus.jpg" alt="Эльбрус">
                         <div class="cards__description">
                         <h4 class="cards__title">Гора Эльбрус</h4>
-                        <button class="cards__button_action_like"><img src="./images/like.svg" alt="like"></button>
+                        <button class="cards__button-like"><img src="./images/like.svg" alt="like"></button>
                         </div>
                     </li>
                     <li class="cards__item">
                         <img class="cards__image" src="./images/dombai.jpg" alt="Домбай">
                         <div class="cards__description">
                         <h4 class="cards__title">Домбай</h4>
-                        <button class="cards__button_action_like"><img src="./images/like.svg" alt="like"></button>
+                        <button class="cards__button-like"><img src="./images/like.svg" alt="like"></button>
                         </div>
                     </li>
                     <li class="cards__item">
                         <img class="cards__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
                         <div class="cards__description">
                         <h4 class="cards__title">Карачаевск</h4>
-                        <button class="cards__button_action_like"><img src="./images/like.svg" alt="like"></button>
+                        <button class="cards__button-like"><img src="./images/like.svg" alt="like"></button>
                         </div>
                     </li>
                 </ul>
             </section>
         </main>
 
-        <footer class="footer">           
-            <p class="footer__copyright">&copy; 2020 Mesto Russia</p>         
+        <footer class="footer">
+            <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
+        <section class="popup">
+          <form class="popup__container" name="popup" action="url" method="GET">
+              <button class="popup__button-close" type="button"></button>
+              <h3 class="popup__title">Редактировать профиль</h3>
+              <input type="text" class="popup__item popup__item_el_name" name="name" placeholder="Имя" required>
+              <input type="text" class="popup__item popup__item_el_about-yourself"  name="about-yourself" placeholder="О себе" required>
+              <button class="popup__button-save" type="submit">Сохранить</button>
+          </form>
+      </section>
+
         <script src="./script.js"></script>
     </div>
 
