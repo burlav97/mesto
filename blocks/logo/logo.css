@@ -3,12 +3,12 @@
     height: 33px;
     background-size: cover;
     background-position: center;
-    background-image: url(../../images/logo.png);
+    background-image: url(../../images/logo.svg);
     margin-bottom: 40.6px;
 }
 @media screen and (min-width : 768px) and (max-width : 1023px) {
     .logo {
-        margin-bottom: 31.6px; 
+        margin-bottom: 31.6px;
     }
  }
 @media screen and (max-width : 767px) {

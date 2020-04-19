@@ -6,9 +6,8 @@
 @import url(./__subtitle/profile__subtitle.css);
 @import url(./__button-edit/profile__button-edit.css);
 @import url(./__button-add/profile__button-add.css);
-@import url(./__icon/profile__icon.css);
-@import url(./__icon/_view/profile__icon_view_pen.css);
-@import url(./__icon/_view/profile__icon_view_plus.css);
+@import url(./__icon-pen/profile__icon-pen.css);
+@import url(./__icon-plus/profile__icon-plus.css);
 .profile {
     max-width: 100%;
     display: flex;

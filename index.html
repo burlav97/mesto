@@ -14,7 +14,7 @@
 
     <div class="page">
 
-
+<!--Спасибо Вам за проверку) popup_opened пробовала подключить по БЭМ к стилям popup, в этом случае не срабатывает открывание модального окна-->
         <header class="header">
             <div class="logo "></div>
         </header>
@@ -25,12 +25,11 @@
                 <div class="profile__container">
                     <img class="profile__avatar" src="./images/jak-iv-custo.jpg" alt="Аватар">
                     <div class="profile__info">
-                            <div class="profile__edit-container"><h2 class="profile__title">Жак-Ив Кусто</h2> <button class="profile__button-edit"><img class="profile__icon_view_pen" src="./images/edit-button.svg"
-                                alt="Кнопка редактирования файла"></button> </div>
+                            <div class="profile__edit-container"><h2 class="profile__title">Жак-Ив Кусто</h2> <button class="profile__button-edit" type="button"></button> </div>
                             <p class="profile__subtitle">Исследователь океана</p>
                     </div>
                 </div>
-                <button class="profile__button-add" type="button"><img class="profile__icon profile__icon_view_plus" src="./images/plus.svg" alt="Плюс"></button>
+                <button class="profile__button-add" type="button"><img class=" profile__icon-plus" src="./images/plus.svg" alt="Плюс"></button>
             </section>
 
             <section class="elements">
@@ -39,42 +38,42 @@
                         <img class="cards__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
                         <div class="cards__description">
                         <h4 class="cards__title">Карачаевск</h4>
-                        <button class="cards__button-like"><img src="./images/like.svg" alt="like"></button>
+                        <button class="cards__button-like" type="button"></button>
                         </div>
                     </li>
                     <li class="cards__item">
                         <img class="cards__image" src="./images/elbrus.jpg" alt="Эльбрус">
                         <div class="cards__description">
                         <h4 class="cards__title">Гора Эльбрус</h4>
-                        <button class="cards__button-like"><img src="./images/like.svg" alt="like"></button>
+                        <button class="cards__button-like" type="button"></button>
                         </div>
                     </li>
                     <li class="cards__item">
                         <img class="cards__image" src="./images/dombai.jpg" alt="Домбай">
                         <div class="cards__description">
                         <h4 class="cards__title">Домбай</h4>
-                        <button class="cards__button-like"><img src="./images/like.svg" alt="like"></button>
+                        <button class="cards__button-like" type="button"></button>
                         </div>
                     </li>
                     <li class="cards__item">
                         <img class="cards__image" src="./images/elbrus.jpg" alt="Эльбрус">
                         <div class="cards__description">
                         <h4 class="cards__title">Гора Эльбрус</h4>
-                        <button class="cards__button-like"><img src="./images/like.svg" alt="like"></button>
+                        <button class="cards__button-like" type="button"></button>
                         </div>
                     </li>
                     <li class="cards__item">
                         <img class="cards__image" src="./images/dombai.jpg" alt="Домбай">
                         <div class="cards__description">
                         <h4 class="cards__title">Домбай</h4>
-                        <button class="cards__button-like"><img src="./images/like.svg" alt="like"></button>
+                        <button class="cards__button-like" type="button"></button>
                         </div>
                     </li>
                     <li class="cards__item">
                         <img class="cards__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
                         <div class="cards__description">
                         <h4 class="cards__title">Карачаевск</h4>
-                        <button class="cards__button-like"><img src="./images/like.svg" alt="like"></button>
+                        <button class="cards__button-like" type="button"></button>
                         </div>
                     </li>
                 </ul>
@@ -86,7 +85,7 @@
         </footer>
         <section class="popup">
           <form class="popup__container" name="popup" action="url" method="GET">
-              <button class="popup__button-close" type="button"></button>
+              <button class="popup__button-close" type="button" aria-label="Закрыть"></button>
               <h3 class="popup__title">Редактировать профиль</h3>
               <input type="text" class="popup__item popup__item_el_name" name="name" placeholder="Имя" required>
               <input type="text" class="popup__item popup__item_el_about-yourself"  name="about-yourself" placeholder="О себе" required>
@@ -94,7 +93,7 @@
           </form>
       </section>
 
-        <script src="./script.js"></script>
+        <script src="./script/script.js"></script>
     </div>
 
 </body>

@@ -7,6 +7,7 @@
 }
 .profile__button-add:hover {
   border: 2px solid rgba(255, 255, 255, .6);
+  transition:  border .6s ease-in-out;
 }
 @media screen and (max-width : 767px) {
   .profile__button-add {

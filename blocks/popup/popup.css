@@ -3,8 +3,6 @@
 @import url(./__item/popup__item.css);
 @import url(./__button-close/popup__button-close.css);
 @import url(./__button-save/popup__button-save.css);
-@import url(./__icon/popup__icon.css);
-
 .popup {
     position: fixed;
     top: 0;
@@ -17,3 +15,4 @@
     align-items: center;
     font-family: 'Inter', Arial, sans-serif;
 }
+
