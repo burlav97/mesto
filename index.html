@@ -13,8 +13,6 @@
 <body class="root">
 
     <div class="page">
-
-<!--Спасибо Вам за проверку) popup_opened пробовала подключить по БЭМ к стилям popup, в этом случае не срабатывает открывание модального окна-->
         <header class="header">
             <div class="logo "></div>
         </header>
@@ -34,65 +32,50 @@
 
             <section class="elements">
                 <ul class="cards">
-                    <li class="cards__item">
-                        <img class="cards__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-                        <div class="cards__description">
-                        <h4 class="cards__title">Карачаевск</h4>
-                        <button class="cards__button-like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="cards__item">
-                        <img class="cards__image" src="./images/elbrus.jpg" alt="Эльбрус">
-                        <div class="cards__description">
-                        <h4 class="cards__title">Гора Эльбрус</h4>
-                        <button class="cards__button-like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="cards__item">
-                        <img class="cards__image" src="./images/dombai.jpg" alt="Домбай">
-                        <div class="cards__description">
-                        <h4 class="cards__title">Домбай</h4>
-                        <button class="cards__button-like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="cards__item">
-                        <img class="cards__image" src="./images/elbrus.jpg" alt="Эльбрус">
-                        <div class="cards__description">
-                        <h4 class="cards__title">Гора Эльбрус</h4>
-                        <button class="cards__button-like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="cards__item">
-                        <img class="cards__image" src="./images/dombai.jpg" alt="Домбай">
-                        <div class="cards__description">
-                        <h4 class="cards__title">Домбай</h4>
-                        <button class="cards__button-like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="cards__item">
-                        <img class="cards__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-                        <div class="cards__description">
-                        <h4 class="cards__title">Карачаевск</h4>
-                        <button class="cards__button-like" type="button"></button>
-                        </div>
-                    </li>
                 </ul>
             </section>
         </main>
 
         <footer class="footer">
-            <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+                <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
-        <section class="popup">
-          <form class="popup__container" name="popup" action="url" method="GET">
-              <button class="popup__button-close" type="button" aria-label="Закрыть"></button>
-              <h3 class="popup__title">Редактировать профиль</h3>
-              <input type="text" class="popup__item popup__item_el_name" name="name" placeholder="Имя" required>
-              <input type="text" class="popup__item popup__item_el_about-yourself"  name="about-yourself" placeholder="О себе" required>
-              <button class="popup__button-save" type="submit">Сохранить</button>
-          </form>
-      </section>
 
+            <section class="popup popup_type_edit">
+                <form class="popup__container popup__container_edit" name="popup" action="url" method="GET">
+                    <button class="popup__button-close popup__button-close-edit" type="button" aria-label="Закрыть"></button>
+                    <h3 class="popup__title">Редактировать профиль</h3>
+                    <input type="text" class="popup__item popup__item_el_name" name="name" placeholder="Имя" required>
+                    <input type="text" class="popup__item popup__item_el_about-yourself"  name="about-yourself" placeholder="О себе" required>
+                    <button class="popup__button-save" type="submit">Сохранить</button>
+                </form>
+            </section>
+
+            <section class="popup popup_type_add">
+                <form class="popup__container popup__container_add" name="popup" method="GET" novalidate>
+                    <button class="popup__button-close popup__button-close-add" type="button" aria-label="Закрыть"></button>
+                    <h3 class="popup__title">Новое место</h3>
+                    <input type="text" class="popup__item popup__item_el_title" name="name" placeholder="Название">
+                    <input type="text" class="popup__item popup__item_el_link"  name="link" placeholder="Ссылка на картинку">
+                    <button class="popup__button-save popup__button-save_add" type="submit">Сохранить</button>
+                </form>
+            </section>
+            <section class="popup popup_type_image">
+                <form class="popup__container popup__container_image" name="popup" action="url" method="GET">
+                    <button class="popup__button-close popup__button-close-image" type="button" aria-label="Закрыть"></button>
+                    <img class="popup__image" src="" alt="">
+                    <p class="popup__subtitle"></p>
+                </form>
+            </section>
+                <template id="place-template">
+                    <li class="cards__item">
+                    <img class="cards__image" src="" alt="">
+                    <div class="cards__description">
+                        <h4 class="cards__title"></h4>
+                        <button class="cards__button-like" type="button"></button>
+                        <button class="cards__button-delete" type="button"></button>
+                    </div>
+                    </li>
+                </template>
         <script src="./script/script.js"></script>
     </div>
 
