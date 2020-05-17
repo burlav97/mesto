@@ -7,9 +7,9 @@
   background-image: url(../../../images/edit-button.svg);
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;
+  background-position: top;
   width: 24px;
-  height: 24px;
+  height: 34px;
   }
   .profile__button-edit:focus {
       border: 0;

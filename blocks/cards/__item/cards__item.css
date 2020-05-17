@@ -1,6 +1,6 @@
 .cards__item {
     margin: 0 18px 21px 0;
-    max-width: 282px;
+    width: 282px;
     background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -11,17 +11,17 @@
 }
 @media screen and (min-width : 1024px) and (max-width : 1279px) {
     .cards__item {
-        max-width: 248px;
+        width: 248px;
     }
  }
  @media screen and (min-width : 768px) and (max-width : 1023px) {
     .cards__item {
-        max-width: 215px;
+        width: 215px;
     }
  }
  @media screen and  (max-width : 767px) {
     .cards__item {
-        max-width: 282px;
+        width: 282px;
         margin: 0 0 20px;
     }
  }
