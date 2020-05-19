@@ -7,7 +7,7 @@ const closeButtonEdit = document.querySelector('.popup__button-close-edit');
 const closeButtonAdd = document.querySelector('.popup__button-close-add');
 const closeButtonImage = document.querySelector('.popup__button-close-image');
 
-
+//Спасибо Ваи за проверку!
 const userName = document.querySelector('.profile__title');
 const userJob = document.querySelector('.profile__subtitle');
 const nameInput = document.querySelector('.popup__item_el_name');
