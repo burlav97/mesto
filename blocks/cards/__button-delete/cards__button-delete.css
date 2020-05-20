@@ -12,3 +12,7 @@
   right: 15px;
   cursor: pointer;
 }
+.cards__button-delete:hover {
+  filter: drop-shadow(2px 3px 5px black);
+  transition: filter .5 ease-in-out;
+}

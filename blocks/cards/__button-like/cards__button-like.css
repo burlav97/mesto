@@ -4,10 +4,14 @@
   padding: 0;
   line-height: 1.8rem;
   background-image: url(../../../images/like.svg);
-  background-size: contain;
+  background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: center;
   width: 28.76px;
   height: 28.8px;
   cursor: pointer;
+}
+.cards__button-like:hover {
+  background-size: 23px 23px;
+  transition: background-size 0.8 ease-in-out;
 }
