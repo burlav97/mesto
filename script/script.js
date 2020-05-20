@@ -6,7 +6,8 @@ const openButtonAdd = document.querySelector('.profile__button-add');
 const closeButtonEdit = document.querySelector('.popup__button-close-edit');
 const closeButtonAdd = document.querySelector('.popup__button-close-add');
 const closeButtonImage = document.querySelector('.popup__button-close-image');
-
+//Поняла, что название карточки не нужно переносить, поэтому и выравнивание страдало
+//За js Вам спасибо! Особенно за removelement и удаление слушателей, надолго теперь запомню!
 
 const userName = document.querySelector('.profile__title');
 const userJob = document.querySelector('.profile__subtitle');
@@ -54,7 +55,8 @@ const placeTemplate = document.querySelector('#place-template').content;
 const imagePopup = document.querySelector('.popup__image');
 const subtitlePopup = document.querySelector('.popup__subtitle');
 
-
+const name = popupAdd.querySelector('.popup__item_el_title');
+const link = popupAdd.querySelector('.popup__item_el_link');
 // Открытие и закрытие формы ФУНКЦИИ
 function togglePopup(popupElement) {
  popupElement.classList.toggle('popup_opened');
@@ -75,14 +77,6 @@ function formSubmitHandler (evt) {
 
   togglePopup(popupEdit);
 }
-function loadCards(cards) {
-  return cards.map((card) => makeCards(card));
-};
-
-
-function renderCards(cards) {
-  cardsContainer.prepend(...cards);
-};
 
 //Увеличение
 
@@ -95,12 +89,45 @@ function zoomImage(event) {
 function like(evt) {
   evt.target.classList.toggle('cards__button-like_active');
  };
+  //Функцию для всего массива
+  function makeCards(item) {
+
+    const placeElement = placeTemplate.cloneNode(true);
+    const placeImage = placeElement.querySelector('.cards__image');
+    const removeButton =  placeElement.querySelector('.cards__button-delete');
+
+    //Добавление элемента - ok
+    placeElement.querySelector('.cards__title').textContent = item.name;
+    placeImage.src = item.link;
+    placeImage.alt= item.name;
+
+     //LIKE - ok
+     const likeButton = placeElement.querySelector('.cards__button-like')
+     likeButton.addEventListener('click', like);
+
+     //Увеличение картинки -ok
+    placeImage.addEventListener('click', zoomImage);
+
+    removeButton.addEventListener('click', (event) => {
+      likeButton.removeEventListener('click', like);
+      placeImage.addEventListener('click', zoomImage);
+      event.target.closest('.cards__item').remove();
+  }, { once: true });
+
+
+    return placeElement;
+  }
+  function loadCards(cards) {
+    return cards.map((card) => makeCards(card));
+  };
+  function renderCards(cards) {
+    cardsContainer.prepend(...cards);
+  };
 
 
 //Обработчики форм
 //Функция добавления карточки
-const name = popupAdd.querySelector('.popup__item_el_title');
-const link = popupAdd.querySelector('.popup__item_el_link');
+
 function popupAddCard(evt) {
 
   evt.preventDefault();
@@ -118,34 +145,7 @@ function popupAddCard(evt) {
   name.value = '';
 
 }
-  //Функцию для всего массива
-function makeCards(item) {
 
-  const placeElement = placeTemplate.cloneNode(true);
-  const placeImage = placeElement.querySelector('.cards__image');
-  const removeButton =  placeElement.querySelector('.cards__button-delete');
-
-  //Добавление элемента - ok
-  placeElement.querySelector('.cards__title').textContent = item.name;
-  placeImage.src = item.link;
-  placeImage.alt= item.name;
-
-   //LIKE - ok
-   const likeButton = placeElement.querySelector('.cards__button-like')
-   likeButton.addEventListener('click', like);
-
-   //Увеличение картинки -ok
-  placeImage.addEventListener('click', zoomImage);
-
-  removeButton.addEventListener('click', (event) => {
-    likeButton.removeEventListener('click', like);
-    placeImage.addEventListener('click', zoomImage);
-    event.target.closest('.cards__item').remove();
-}, { once: true });
-
-
-  return placeElement;
-}
 
 formElementAdd.addEventListener('submit', popupAddCard);
 formElementEdit.addEventListener('submit', formSubmitHandler);

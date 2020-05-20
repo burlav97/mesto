@@ -6,7 +6,7 @@
 @import url(./__button-like/_active/cards__button-like_active.css);
 @import url(./__button-delete/cards__button-delete.css);
 
-.cards {!
+.cards {
     max-width: 100%;
     display: flex;
     flex-direction: row;
