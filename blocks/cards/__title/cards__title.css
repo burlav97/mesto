@@ -16,3 +16,9 @@
         font-size: 1rem;
     }
  }
+ @media screen  and (max-width : 767px) {
+  .cards__title {
+    max-width: 75%;
+  }
+}
+
