@@ -2,11 +2,12 @@
     width: 358px;
     border: 0;
     border-bottom: 1px solid #000;
-    margin: 0 0 30px;
+    margin: 0;
    padding-bottom: 13px;
    font-size: 0.9rem;
     line-height: 1.1rem;
     color: black;
+    position: relative;
 }
 @media screen and (max-width: 767px) {
     .popup__item {
