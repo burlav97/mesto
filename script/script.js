@@ -48,6 +48,7 @@ const initialCards = [
   }
 ];
 
+
 const cardsContainer = document.querySelector('.cards');
 const formElementAdd = popupAdd.querySelector('.popup__container_add');
 const placeTemplate = document.querySelector('#place-template').content;
