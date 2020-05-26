@@ -1,24 +1,19 @@
+
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
-const popup = document.querySelector('.popup');
-const popupContainer = document.querySelector('.popup__container');
 const popupImage = document.querySelector('.popup_type_image');
 const openButtonEdit = document.querySelector('.profile__button-edit');
 const openButtonAdd = document.querySelector('.profile__button-add');
-const closeButton = document.querySelector('.popup__button-close');
 const closeButtonEdit = document.querySelector('.popup__button-close-edit');
 const closeButtonAdd = document.querySelector('.popup__button-close-add');
 const closeButtonImage = document.querySelector('.popup__button-close-image');
-
-const popupSection = Array.from(document.querySelectorAll('.popup'));
-
+//Не понимаю с чем это было связано, все работало, вставила тот же код
 const userName = document.querySelector('.profile__title');
 const userJob = document.querySelector('.profile__subtitle');
 const nameInput = document.querySelector('.popup__item_el_name');
 const jobInput = document.querySelector('.popup__item_el_about-yourself');
 // Находим форму в DOM
 const formElementEdit = document.querySelector('.popup__container_edit');
-const formElementImage = document.querySelector('.popup__container_image');
 // Массив карточек
 const initialCards = [
   {
@@ -89,8 +84,6 @@ const clickClose = (popupEl) => {
     };
   });
 };
-
-
 function popupEditProfile() {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
@@ -104,10 +97,9 @@ function formSubmitHandler (evt) {
 
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
+
   togglePopup(popupEdit);
 }
-
-
 
 //Увеличение
 
@@ -120,9 +112,9 @@ function zoomImage(event) {
 function like(evt) {
   evt.target.classList.toggle('cards__button-like_active');
  };
-
   //Функцию для всего массива
   function makeCards(item) {
+
     const placeElement = placeTemplate.cloneNode(true);
     const placeImage = placeElement.querySelector('.cards__image');
     const removeButton =  placeElement.querySelector('.cards__button-delete');
@@ -177,14 +169,16 @@ function popupAddCard(evt) {
 
 }
 
+
+formElementAdd.addEventListener('submit', popupAddCard);
+formElementEdit.addEventListener('submit', formSubmitHandler);
+
 // Открытие и закрытие POPUP
 openButtonEdit.addEventListener('click', popupEditProfile);
 openButtonAdd.addEventListener('click', () => togglePopup(popupAdd));
 closeButtonEdit.addEventListener('click', popupEditProfile);
 closeButtonAdd.addEventListener('click', () => togglePopup(popupAdd));
 closeButtonImage.addEventListener('click',() => togglePopup(popupImage));
-
-
 clickClose(popupAdd);
 clickClose(popupImage);
 clickClose(popupEdit);
