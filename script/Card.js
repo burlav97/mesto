@@ -16,7 +16,7 @@ export class Card {
 
     return element;
   }
-
+//Спасибо за проверку!
   _like(evt) {
     evt.target.classList.toggle('cards__button-like_active');
   }
@@ -36,8 +36,6 @@ export class Card {
     imageCards.addEventListener('click', this._zoomImage);
     buttonLike.addEventListener('click', this._like);
     buttonDelete.addEventListener('click', (event) => {
-      const buttonLike = this._element.querySelector('.cards__button-like');
-      const imageCards = this._element.querySelector('.cards__image');
       buttonLike.removeEventListener('click', () => {
         this._like()
       });
@@ -50,6 +48,10 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+
+    const imageCards = this._element.querySelector('.cards__image');
+    const titleCards = this._element.querySelector('.cards__title');
+
     imageCards.src = this._link;
     imageCards.alt = this._alt;
     titleCards.textContent = this._name;

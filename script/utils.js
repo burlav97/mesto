@@ -4,11 +4,11 @@ export function togglePopup(popupElement) {
   if (popupElement.classList.contains('popup_opened')) {
     document.addEventListener('keyup', (event) => escClose(event, popupElement))
   }
-  else { document.removeEventListener('keyup', escClose(event, popupElement)) }
-};
+  else { document.removeEventListener('keyup', (event) => escClose(event, popupElement)) }
+}
 // Закрытие попапа нажатием Esc
 export function escClose(event, popupElement) {
   if (event.keyCode == 27) {
     popupElement.classList.remove('popup_opened');
   }
-};
+}
