@@ -37,6 +37,7 @@ const popupEditProfile = () => {
   const infoUser = userInfo.getUserInfo();
   nameInput.value = infoUser.name;
   jobInput.value = infoUser.job;
+  popupEditForm.cleanError();
   popupEditForm.open();
 };
 
@@ -69,6 +70,7 @@ const formAddCard = new PopupWithForm({
 }, popupAdd);
 
 const openAddCardHandler = () => {    
+  formAddCard.cleanError();
   formAddCard.open();
 };
 

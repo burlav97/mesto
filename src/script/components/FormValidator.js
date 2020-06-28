@@ -56,7 +56,7 @@ export default class FormValidator {
       buttonElement.setAttribute("disabled", true);
     } else {
       buttonElement.classList.remove(this._inactiveButtonClass);
-      buttonElement.removeAttribute("disabled", false);
+      buttonElement.disabled = false;
     }
   }
 

@@ -18,13 +18,30 @@ export default class PopupWithForm extends Popup {
 
     return this._formValues;
   }
-  _setEventListeners() {
-    super._setEventListeners();
+  setEventListeners() {
+    super.setEventListeners();
     this._selectorPopup.querySelector('.popup__container').addEventListener('submit', this._submit);
   }
   close() {
     super.close();
     this._selectorPopup.querySelector('.popup__container').reset();
-    this._selectorPopup.querySelector('.popup__container').removeEventListener('submit', this._submit);
+  }
+  cleanError() { // функция обнуления ошибок
+    const buttonSave = this._selectorPopup.querySelector('.popup__button-save');
+    this._selectorPopup.querySelectorAll(".popup__item-error").forEach((span) => {
+      span.classList.remove("popup__item-error_active"); //удаляем со спан модификатор с ошибкой
+      span.textContent = "";
+    });
+
+    this._selectorPopup.querySelectorAll(".popup__item").forEach((input) => {
+      if (!input.value) { //если в инпут нет значений
+        buttonSave.classList.add('popup__button-save_disabled'); //добавляем класс деактивирующий кнопку
+        buttonSave.setAttribute('disabled', 'true');
+      } else {
+        buttonSave.classList.remove('popup__button-save_disabled'); //удаляет класс деактивирующий кнопку
+        buttonSave.removeAttribute('disabled');
+      }
+      input.classList.remove("popup__item_type_error"); //удаляем с инпут модификатор с ошибкой
+    });
   }
 }

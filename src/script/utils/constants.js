@@ -47,19 +47,3 @@ export const initialCards = [
 //Для добавления карточек
 export const cardsContainer = ('.cards');
 export const placeTemplate = ('#place-template');
-export const cardsImage = document.querySelector('.cards__image');
-export const formElementAdd = popupAdd.querySelector('.popup__container_add');
-export const formElementEdit = popupAdd.querySelector('.popup__container_edit');
-const popupName = popupAdd.querySelector('.popup__item_el_title');
-const popupLink = popupAdd.querySelector('.popup__item_el_link');
-
-
-//Валидация
-const validationConfig = {
-  formSelector: '.popup__container',
-  inputSelector: '.popup__item',
-  submitButtonSelector: '.popup__button-save',
-  inactiveButtonClass: 'popup__button-save_disabled',
-  inputErrorClass: 'popup__item_type_error',
-  errorClass: 'popup__item-error_active'
-}

@@ -27,11 +27,10 @@ export default class Card {
 
     imageCard.addEventListener("click", () => { this._handleCardClick(); });
     buttonLike.addEventListener('click', this._like);
-    buttonDelete.addEventListener('click', (event) => {
-      buttonLike.removeEventListener('click', () => {
-        this._like()
-      });
-      event.target.closest('.cards__item').remove();
+    buttonDelete.addEventListener('click', () => {
+      this._element.remove();
+      // Для сборщика мусора
+      this._element = null;
     }, { once: true })
   }
 
@@ -50,4 +49,3 @@ export default class Card {
     return this._element;
   }
 }
-
