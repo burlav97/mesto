@@ -2,7 +2,7 @@ export default class Popup {
   constructor(selectorPopup) {
     this._selectorPopup = selectorPopup;
     this._handleEscClose = (event) => {
-      if (event.keyCode == 27) {
+      if (event.key == 'Escape') {
         this.close();
       }
     }
@@ -17,7 +17,6 @@ export default class Popup {
     this._selectorPopup.classList.add('popup_opened');
     document.addEventListener('keydown', this._handleEscClose);
     document.addEventListener('click', this._handleOverlayClick);
-    this.setEventListeners();
   }
   close() {
     this._selectorPopup.classList.remove('popup_opened');
