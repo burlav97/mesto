@@ -1,10 +1,24 @@
 export default class Card {
-  constructor({ data, handleCardClick }, cardSelector) {
+  constructor({ data, handleCardClick, handleCardLike,
+    handleCardDelete }, cardSelector, userId) {
     this._name = data.name;
     this._link = data.link;
     this._alt = data.alt;
+    this._likes = data.likes;
+    this._id = data._id;
+    this._owner = data.owner._id;
+    this._userId = userId;
+    this._handleCardLike = handleCardLike;
+    this._handleCardDelete = handleCardDelete;
     this._handleCardClick = handleCardClick;
     this._cardSelector = cardSelector;
+    this._clickLike = () => {
+      this._handleCardLike({
+        id: this._id,
+        like: this._element.querySelector('.cards__button-like').classList.contains('cards__button-like_active'),
+        likeSum: this._element.querySelector('.cards__like-sum')
+      });
+    };
   }
   _getTemplate() {
     const cardElement = document
@@ -16,8 +30,34 @@ export default class Card {
     return cardElement;
   }
 
-  _like(evt) {
-    evt.target.classList.toggle('cards__button-like_active');
+  _checkCardOwner(_owner) {
+    if (this._owner === this._userId) {
+      return;
+    } else {
+      this._element.querySelector('.cards__button-delete').style.display = 'none';
+    }
+  }
+
+  _likeCardOwner(_id) {
+    if (this._likes.some((user) =>
+        (user._id === this._userId))) {
+      this._element.querySelector('.cards__button-like').classList.add('cards__button-like_active');
+    }
+  }
+
+  cardLike(sum) { //функция лайков
+    this._element.querySelector('.cards__button-like').classList.toggle('cards__button-like_active');
+    if (sum === 0) {
+      this._element.querySelector('.cards__like-sum').style.display = 'none';
+    } else {
+      this._element.querySelector('.cards__like-sum').style.display = 'block';
+      this._element.querySelector('.cards__like-sum').textContent = sum;
+    }
+  }
+
+  cardDelete() {//функция удаления карточки
+    this._element.remove();
+    this._element = null;
   }
 
   _setEventListeners() {
@@ -25,13 +65,15 @@ export default class Card {
     const buttonDelete = this._element.querySelector('.cards__button-delete');
     const imageCard = this._element.querySelector('.cards__image');
 
-    imageCard.addEventListener("click", () => { this._handleCardClick(); });
-    buttonLike.addEventListener('click', this._like);
+    imageCard.addEventListener("click",  () => {
+      this._handleCardClick();
+    });
+    buttonLike.addEventListener('click', () => {
+        this._clickLike();
+      });
     buttonDelete.addEventListener('click', () => {
-      this._element.remove();
-      // Для сборщика мусора
-      this._element = null;
-    }, { once: true })
+      this._handleCardDelete()
+    })
   }
 
   generateCard() {
@@ -43,6 +85,13 @@ export default class Card {
     imageCards.src = this._link;
     imageCards.alt = this._alt;
     titleCards.textContent = this._name;
+
+    this._checkCardOwner(this._owner)
+    this._likeCardOwner(this._id)
+    if (this._likes.length === 0) {
+      this._element.querySelector('.cards__like-sum').style.display = 'none';
+    }
+    this._element.querySelector('.cards__like-sum').textContent = this._likes.length;
 
     this._setEventListeners();
 

@@ -3,11 +3,6 @@ export default class PopupWithForm extends Popup {
   constructor({ handleFormSubmit }, selectorPopup) {
     super(selectorPopup);
     this._handleFormSubmit = handleFormSubmit;
-    this._submit = (evt) => { // добавляет обработчик сабмита формы. 
-      evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. Так мы можем определить свою логику отправки.
-      this._handleFormSubmit(this._getInputValues());
-      this.close();
-    };
   }
   _getInputValues() {
     this._inputList = this._selectorPopup.querySelectorAll('.popup__item');

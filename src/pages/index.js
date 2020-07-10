@@ -5,6 +5,7 @@ import Section from '../script/components/Section.js';
 import PopupWithImage from '../script/components/PopupWithImage.js';
 import PopupWithForm from '../script/components/PopupWithForm.js';
 import UserInfo from '../script/components/UserInfo.js';
+import Api from '../script/components/Api.js';
 import {
   placeTemplate,
   cardsContainer,
@@ -14,47 +15,200 @@ import {
   popupEdit,
   popupImageZoom,
   nameInput,
-  jobInput,
-  userName,
-  userJob,
-  initialCards,
+  jobInput,  
+  popupAccord,
+  popupAvatar,
+  openButtonAvatar,
+  profileAvatar,
+  profileInfo, 
+  prepend
 } from '../script/utils/constants.js';
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-12',
+  headers: {
+    authorization: '349fcff0-77c4-4e88-a6e9-879b96bc6112',
+    'Content-Type': 'application/json'
+  }
+});
+
+const loading = (isLoading, form, defaultButtonText, loadingMessage) => {
+  const currentButton = form.querySelector('.popup__button-save');
+
+  if (isLoading) {
+    currentButton.textContent = loadingMessage;
+  } else {
+    currentButton.textContent = defaultButtonText;
+  }
+}
+
 
 const popupImage = new PopupWithImage(popupImageZoom);
 
-const userInfo = new UserInfo({
-  nameUser: userName,
-  jobUser: userJob,
-});
+const userInfo = new UserInfo( profileInfo, profileAvatar);
 
 const popupEditForm = new PopupWithForm({
-  handleFormSubmit: (item) => {
-    userInfo.setUserInfo(item);
+  handleFormSubmit: () => {
+    loading(true, popupEdit, 'Сохранить', 'Сохранение...');
+    api.updateInfo(nameInput.value, jobInput.value)
+      .then((result) => {
+        userInfo.setUserInfo(result);
+        profileEditForm.close();
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      })
+      .finally(() => {
+        loading(false, popupEdit, 'Сохранить', 'Сохранение...');
+      });
   }
 }, popupEdit);
 
 const popupEditProfile = () => {          
   const infoUser = userInfo.getUserInfo();
   nameInput.value = infoUser.name;
-  jobInput.value = infoUser.job;
+  jobInput.value = infoUser.about;
   popupEditForm.cleanError();
   popupEditForm.open();
 };
 
 
-const defaultCardList = new Section({    
-  items: initialCards,
-  renderer: (item) => {
-    const card = new Card({
-      data: item,
-      handleCardClick: () => {
-        popupImage.open(item);
+const avatarForm = new PopupWithForm({ //отправляем информацию, введенную пользоавателем на сервер
+  handleFormSubmit: (item) => {
+    loading(true, popupAvatar, 'Сохранить', 'Сохранение...');
+    api.updateAvatar(item.link)
+      .then((item) => {
+        userInfo.
+        setUserAvatar(item);
+      })
+      .then(() => {
+        avatarForm.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        loading(false, popupAvatar, 'Сохранить', 'Сохранение...');
+      });
+  }
+}, popupAvatar);
+
+const openAvatarForm = () => {
+  avatarForm.open();
+  avatarForm.cleanError();
+}
+
+let valueCard;
+const deleteCardConfirm = new PopupWithForm({
+  handleFormSubmit: () => {
+    api.deleteCard(valueCard.object._id)
+      .then((result) => {
+        valueCard.class.cardDelete();
+        deleteCardConfirm.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+}, popupAccord);
+
+const addLike = (object) => { //добавление лайка
+  api.addLike(object)
+    .then((result) => {
+      valueCard.class.cardLike(result.likes.length);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const deleteLike = (object) => { //удаление лайка
+  api.deleteLike(object)
+    .then((result) => {
+      valueCard.class.cardLike(result.likes.length);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+const addCards = (card, position) => { //добавление карточки в DOM
+  if (position === 'prepend') {
+    defaultCardList.addItemPrepend(card);
+  } else {
+    defaultCardList.addItemAppend(card);
+  }
+};
+
+const writeValueCard = (object, className) => { //запись значений в текущую карточк
+  valueCard = {
+    object: object,
+    class: className
+  };
+};
+
+const createCard = (item, userId, position) => { //создание карточки и добавление в разметку
+  const card = new Card({
+    data: item,
+    handleCardClick: () => {
+      popupImage.open(item);
+    },
+    handleCardLike: (cardObject) => {
+      if (cardObject.like) {
+        deleteLike(cardObject);
+      } else {
+        addLike(cardObject);
       }
-    }, placeTemplate);
-    const cardElement = card.generateCard();
-    defaultCardList.addItem(cardElement);
+      writeValueCard(item, card);
+    },
+    handleCardDelete: () => {
+      deleteCardConfirm.open();
+      writeValueCard(item, card);
+    }
+  }, placeTemplate, userId);
+  const cardElement = card.generateCard();
+  addCards(cardElement, position);
+};
+
+const cardForm = new PopupWithForm({
+  handleFormSubmit: (item) => {
+    loading(true, popupAdd, 'Создать', 'Создание...');
+    api.addNewCard(item.name, item.link, item.alt)
+      .then((result) => {
+        createCard(result, result.owner._id, prepend);
+        cardForm.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        loading(false, popupAdd, 'Создать', 'Создание...');
+      });
+  }
+}, popupAdd);
+
+const openCardForm = () => {
+  cardForm.cleanError();
+  cardForm.open();
+};
+
+const defaultCardList = new Section({ //класс для добавления начальных карточек
+  renderer: (item, userId) => {
+    createCard(item, userId);
   }
 }, cardsContainer);
+
+
+Promise.all([api.getInfoUser(), api.getInitialCards()]) //загрузка данных профиля и карточек 
+  .then(([user, cards]) => {
+    //  userInfo.setUserInfo(user);
+    userInfo.setUserInfo(user);
+    defaultCardList.renderItems(cards, user._id);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 
 const formAddCard = new PopupWithForm({   
   handleFormSubmit: (item) => {
@@ -69,10 +223,6 @@ const formAddCard = new PopupWithForm({
   }
 }, popupAdd);
 
-const openAddCardHandler = () => {    
-  formAddCard.cleanError();
-  formAddCard.open();
-};
 
 function formValidation() { 
   const formList = Array.from(document.querySelectorAll(".popup__form")); // сделаем из них массив методом Array.from
@@ -90,9 +240,8 @@ function formValidation() {
 
 // Открытие и закрытие POPUP
 openButtonEdit.addEventListener('click', popupEditProfile);
-openButtonAdd.addEventListener('click', openAddCardHandler);
-//отображение исходных карточек
-defaultCardList.renderItems(initialCards);
+openButtonAdd.addEventListener('click', openCardForm);
+openButtonAvatar.addEventListener('click', openAvatarForm);
 
 //Валидация форм
 formValidation();
