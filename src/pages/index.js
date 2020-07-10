@@ -53,7 +53,7 @@ const popupEditForm = new PopupWithForm({
     api.updateInfo(nameInput.value, jobInput.value)
       .then((result) => {
         userInfo.setUserInfo(result);
-        profileEditForm.close();
+        popupEditForm.close();
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
