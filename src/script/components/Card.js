@@ -32,7 +32,7 @@ export default class Card {
 
     return cardElement;
   }
-  _checkCardOwner(_owner) {
+  _checkCard(_owner) {
     if (this._owner === this._userId) {
       return;
     } else {
@@ -40,7 +40,7 @@ export default class Card {
     }
   }
 
-  _likeCardOwner(_id) {
+  _likeCard(_id) {
     if (this._likes.some((user) =>
         (user._id === this._userId))) {
       this._element.querySelector('.cards__button-like').classList.add('cards__button-like_active');
@@ -88,8 +88,8 @@ export default class Card {
     imageCards.alt = this._alt;
     titleCards.textContent = this._name;
 
-    this._checkCardOwner(this._owner);
-    this._likeCardOwner(this._id);
+    this._checkCard(this._owner);
+    this._likeCard(this._id);
     if (this._likes.length === 0) {
       this._element.querySelector('.cards__like-sum').style.display = 'none';
     }
