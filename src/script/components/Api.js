@@ -64,7 +64,6 @@ export default class Api {
       
       .then(res => {
         if (res.ok) {
-          console,log(res);
           return res.json();
           
         }
@@ -114,7 +113,7 @@ export default class Api {
   } 
 
   updateAvatar(link) {
-    //console.log(link);
+   
     return fetch(this._url + '/users/me/avatar', {
         method: 'PATCH',
         headers: this._headers,

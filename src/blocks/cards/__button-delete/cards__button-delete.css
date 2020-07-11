@@ -11,7 +11,6 @@
   top: 18px;
   right: 15px;
   cursor: pointer;
-  display: block;
 }
 .cards__button-delete:hover {
   filter: drop-shadow(2px 3px 5px black);

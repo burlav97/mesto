@@ -1,17 +1,20 @@
 export default class Card {
-  constructor({ data, handleCardClick, handleCardLike,
-    handleCardDelete }, cardSelector, userId) {
-    this._name = data.name;
+  constructor({
+    data,
+    handleCardClick,
+    handleCardLike,
+    handleCardDelete
+  }, cardSelector, userId) {
+    this._name = data.name; //this хранит ссылку на объект, на котором она вызвана
     this._link = data.link;
-    this._alt = data.alt;
     this._likes = data.likes;
     this._id = data._id;
     this._owner = data.owner._id;
     this._userId = userId;
+    this._handleCardClick = handleCardClick;
     this._handleCardLike = handleCardLike;
     this._handleCardDelete = handleCardDelete;
-    this._handleCardClick = handleCardClick;
-    this._cardSelector = cardSelector;
+    this._cardSelector = cardSelector; // записали селектор в приватное поле
     this._clickLike = () => {
       this._handleCardLike({
         id: this._id,
@@ -29,8 +32,7 @@ export default class Card {
 
     return cardElement;
   }
-
-  _checkCard(_owner) {
+  _checkCardOwner(_owner) {
     if (this._owner === this._userId) {
       return;
     } else {
@@ -38,8 +40,7 @@ export default class Card {
     }
   }
 
-  _likeCard(_id) {
-    
+  _likeCardOwner(_id) {
     if (this._likes.some((user) =>
         (user._id === this._userId))) {
       this._element.querySelector('.cards__button-like').classList.add('cards__button-like_active');
@@ -87,8 +88,8 @@ export default class Card {
     imageCards.alt = this._alt;
     titleCards.textContent = this._name;
 
-    this._checkCard(this._owner)
-    this._likeCard(this._id)
+    this._checkCardOwner(this._owner);
+    this._likeCardOwner(this._id);
     if (this._likes.length === 0) {
       this._element.querySelector('.cards__like-sum').style.display = 'none';
     }
