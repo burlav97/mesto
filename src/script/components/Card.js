@@ -5,7 +5,7 @@ export default class Card {
     handleCardLike,
     handleCardDelete
   }, cardSelector, userId) {
-    this._name = data.name; //this хранит ссылку на объект, на котором она вызвана
+    this._name = data.name; 
     this._link = data.link;
     this._likes = data.likes;
     this._id = data._id;
@@ -14,7 +14,7 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleCardLike = handleCardLike;
     this._handleCardDelete = handleCardDelete;
-    this._cardSelector = cardSelector; // записали селектор в приватное поле
+    this._cardSelector = cardSelector; /
     this._clickLike = () => {
       this._handleCardLike({
         id: this._id,
