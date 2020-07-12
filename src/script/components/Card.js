@@ -16,13 +16,16 @@ export default class Card {
     this._handleCardDelete = handleCardDelete;
     this._cardSelector = cardSelector; 
     this._clickLike = () => {
+      
       this._handleCardLike({
         id: this._id,
         like: this._element.querySelector('.cards__button-like').classList.contains('cards__button-like_active'),
         likeSum: this._element.querySelector('.cards__like-sum')
       });
+   
     };
   }
+  
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
@@ -80,7 +83,7 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-
+    const likesSum = this._element.querySelector('.cards__like-sum');
     const imageCards = this._element.querySelector('.cards__image');
     const titleCards = this._element.querySelector('.cards__title');
 
@@ -91,9 +94,9 @@ export default class Card {
     this._checkCard(this._owner);
     this._likeCard(this._id);
     if (this._likes.length === 0) {
-      this._element.querySelector('.cards__like-sum').style.display = 'none';
+     likesSum.style.display = 'none';
     }
-    this._element.querySelector('.cards__like-sum').textContent = this._likes.length;
+    likesSum.textContent = this._likes.length;
 
     this._setEventListeners();
 
