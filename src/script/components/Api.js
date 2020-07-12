@@ -5,7 +5,6 @@ export default class Api {
   }
 
   getInfoUser() {
-    console.log(this._headers);
     return fetch(this._url + '/users/me', {
         headers: this._headers,
       })
@@ -19,7 +18,6 @@ export default class Api {
   }
 
   getInitialCards() {
-    console.log(this._url);
     return fetch(this._url + '/cards', {
         method: 'GET',
         headers: this._headers,
@@ -33,7 +31,6 @@ export default class Api {
   }
 
   updateInfo(name, about) {
-    console.log(this._url);
     return fetch(this._url + '/users/me', {
         method: 'PATCH',
         headers: this._headers,
@@ -51,7 +48,6 @@ export default class Api {
   }
 
   addNewCard(cardName, cardLink) {
-    console.log(this._url);
     return fetch(this._url + '/cards', {
         method: 'POST',
         headers: this._headers,
@@ -67,8 +63,10 @@ export default class Api {
           return res.json();
           
         }
-        console.log(res);
         return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
@@ -83,6 +81,9 @@ export default class Api {
           return res.json();
         }
         return Promise.reject(`error${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -97,6 +98,9 @@ export default class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   deleteLike(card) {
@@ -110,6 +114,10 @@ export default class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
+      .catch((err) => {
+        console.log(err);
+      });
+
   } 
 
   updateAvatar(link) {
@@ -126,6 +134,9 @@ export default class Api {
           return res.json();
         }
         return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 }

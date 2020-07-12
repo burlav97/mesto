@@ -84,9 +84,6 @@ const avatarForm = new PopupWithForm({ //отправляем информаци
       .then(() => {
         avatarForm.close();
       })
-      .catch((err) => {
-        console.log(err);
-      })
       .finally(() => {
         loading(false, popupAvatar, 'Сохранить', 'Сохранение...');
       });
@@ -102,13 +99,10 @@ let valueCard;
 const deleteCardConfirm = new PopupWithForm({
   handleFormSubmit: () => {
     api.deleteCard(valueCard.object._id)
-      .then((result) => {
+      .then(() => {
         valueCard.class.cardDelete();
         deleteCardConfirm.close();
       })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 }, popupAccord);
 
@@ -117,9 +111,6 @@ const addLike = (object) => { //добавление лайка
     .then((result) => {
       valueCard.class.cardLike(result.likes.length);
     })
-    .catch((err) => {
-      console.log(err);
-    });
 };
 
 const deleteLike = (object) => { //удаление лайка
@@ -127,9 +118,6 @@ const deleteLike = (object) => { //удаление лайка
     .then((result) => {
       valueCard.class.cardLike(result.likes.length);
     })
-    .catch((err) => {
-      console.log(err);
-    });
 }
 
 const addCards = (card, position) => { //добавление карточки в DOM
@@ -178,9 +166,6 @@ const cardForm = new PopupWithForm({
         createCard(result, result.owner._id, prepend);
         cardForm.close();
       })
-      .catch((err) => {
-        console.log(err);
-      })
       .finally(() => {
         loading(false, popupAdd, 'Создать', 'Создание...');
       });
@@ -201,7 +186,6 @@ const defaultCardList = new Section({ //класс для добавления �
 
 Promise.all([api.getInfoUser(), api.getInitialCards()]) //загрузка данных профиля и карточек 
   .then(([user, cards]) => {
-    //  userInfo.setUserInfo(user);
     userInfo.setUserInfo(user);
     defaultCardList.renderItems(cards, user._id);
   })

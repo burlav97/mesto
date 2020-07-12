@@ -14,7 +14,7 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleCardLike = handleCardLike;
     this._handleCardDelete = handleCardDelete;
-    this._cardSelector = cardSelector; /
+    this._cardSelector = cardSelector; 
     this._clickLike = () => {
       this._handleCardLike({
         id: this._id,
@@ -32,7 +32,7 @@ export default class Card {
 
     return cardElement;
   }
-  _checkCard(_owner) {
+  _checkCard() {
     if (this._owner === this._userId) {
       return;
     } else {
@@ -40,7 +40,7 @@ export default class Card {
     }
   }
 
-  _likeCard(_id) {
+  _likeCard() {
     if (this._likes.some((user) =>
         (user._id === this._userId))) {
       this._element.querySelector('.cards__button-like').classList.add('cards__button-like_active');
