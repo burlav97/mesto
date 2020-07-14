@@ -14,6 +14,9 @@ export default class Api {
         } else {
           return Promise.reject(`Ошибка: ${res.status}`);
         }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
@@ -27,6 +30,9 @@ export default class Api {
           return res.json();
         }
         return Promise.reject(`Ошибка: ${res.status}`); 
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
@@ -44,11 +50,14 @@ export default class Api {
           return res.json();
         }
         return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
   addNewCard(cardName, cardLink) {
-    return fetch(this._url + '/cards', {
+    return fetch(`${this._url}/cards/`, {
         method: 'POST',
         headers: this._headers,
         body: JSON.stringify({
@@ -71,7 +80,7 @@ export default class Api {
   }
 
   deleteCard(id) {
-    return fetch(this._url + '/cards/' + id, {
+    return fetch(`${this._url}/cards/${id}`, {
         method: 'DELETE',
         baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-12',
         headers: this._headers,
@@ -88,7 +97,7 @@ export default class Api {
   };
 
   addLike(card) {
-    return fetch(this._url + '/cards/likes/'+ card.id, {
+    return fetch(`${this._url}/cards/likes/${card.id}`, {
         method: 'PUT',
         headers: this._headers,
       })
@@ -104,7 +113,7 @@ export default class Api {
   }
 
   deleteLike(card) {
-    return fetch(this._url + '/cards/likes/'+ card.id, {
+    return fetch(`${this._url}/cards/likes/${card.id}`, {
         method: 'DELETE',
         headers: this._headers,
       })

@@ -55,9 +55,7 @@ const popupEditForm = new PopupWithForm({
         userInfo.setUserInfo(result);
         popupEditForm.close();
       })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-      })
+      
       .finally(() => {
         loading(false, popupEdit, 'Сохранить', 'Сохранение...');
       });
@@ -162,8 +160,9 @@ const cardForm = new PopupWithForm({
   handleFormSubmit: (item) => {
     loading(true, popupAdd, 'Создать', 'Создание...');
     api.addNewCard(item.name, item.link, item.alt)
+    //**alt delete/
       .then((result) => {
-        createCard(result, result.owner._id, prepend);
+        createCard(result, result.owner_id, prepend);
         cardForm.close();
       })
       .finally(() => {
@@ -188,24 +187,10 @@ Promise.all([api.getInfoUser(), api.getInitialCards()]) //загрузка да�
   .then(([user, cards]) => {
     userInfo.setUserInfo(user);
     defaultCardList.renderItems(cards, user._id);
-  })
-  .catch((err) => {
-    console.log(err);
   });
 
 
-const formAddCard = new PopupWithForm({   
-  handleFormSubmit: (item) => {
-    const card = new Card({
-      data: item,
-      handleCardClick: () => {
-        popupImage.open(item);
-      }
-    }, placeTemplate);
-    const cardElement = card.generateCard();
-    defaultCardList.addItem(cardElement);
-  }
-}, popupAdd);
+
 
 
 function formValidation() { 

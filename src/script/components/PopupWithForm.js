@@ -24,6 +24,9 @@ export default class PopupWithForm extends Popup {
     super.close();
     this._selectorPopup.querySelector('.popup__container').reset();
   }
+  open() {
+    super.open();
+  }
   cleanError() { 
     const buttonSave = this._selectorPopup.querySelector('.popup__button-save');
     this._selectorPopup.querySelectorAll(".popup__item-error").forEach((span) => {

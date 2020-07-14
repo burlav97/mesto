@@ -8,7 +8,7 @@ export default class Card {
     this._name = data.name; 
     this._link = data.link;
     this._likes = data.likes;
-    this._id = data._id;
+   this._id = data._id;
     this._owner = data.owner._id;
     this._userId = userId;
     this._handleCardClick = handleCardClick;
@@ -16,25 +16,23 @@ export default class Card {
     this._handleCardDelete = handleCardDelete;
     this._cardSelector = cardSelector; 
     this._clickLike = () => {
-      
       this._handleCardLike({
         id: this._id,
         like: this._element.querySelector('.cards__button-like').classList.contains('cards__button-like_active'),
         likeSum: this._element.querySelector('.cards__like-sum')
       });
-   
     };
   }
-  
+
   _getTemplate() {
     const cardElement = document
-      .querySelector(this._cardSelector)
-      .content
-      .querySelector('.cards__item')
+      .querySelector(this._cardSelector) 
+      .content.querySelector(".cards__item")
       .cloneNode(true);
 
-    return cardElement;
+    return cardElement; // вернём DOM-элемент карточки
   }
+
   _checkCard() {
     if (this._owner === this._userId) {
       return;
@@ -44,19 +42,20 @@ export default class Card {
   }
 
   _likeCard() {
-    if (this._likes.some((user) =>
+    if (Array.from(this._likes).some((user) =>
         (user._id === this._userId))) {
       this._element.querySelector('.cards__button-like').classList.add('cards__button-like_active');
     }
   }
 
   cardLike(sum) { //функция лайков
-    this._element.querySelector('.cards__button-like').classList.toggle('cards__button-like_active');
+    const likesSum = this._element.querySelector('.cards__like-sum')
+    this._element.querySelector(".cards__button-like").classList.toggle("cards__button-like_active");
     if (sum === 0) {
-      this._element.querySelector('.cards__like-sum').style.display = 'none';
+      likesSum.style.display = 'none';
     } else {
-      this._element.querySelector('.cards__like-sum').style.display = 'block';
-      this._element.querySelector('.cards__like-sum').textContent = sum;
+      likesSum.style.display = 'block';
+      likesSum.textContent = sum;
     }
   }
 
@@ -66,40 +65,45 @@ export default class Card {
   }
 
   _setEventListeners() {
-    const buttonLike = this._element.querySelector('.cards__button-like');
-    const buttonDelete = this._element.querySelector('.cards__button-delete');
-    const imageCard = this._element.querySelector('.cards__image');
-
-    imageCard.addEventListener("click",  () => {
-      this._handleCardClick();
-    });
-    buttonLike.addEventListener('click', () => {
+    this._element
+      .querySelector(".cards__button-like")
+      .addEventListener("click", () => {
         this._clickLike();
       });
-    buttonDelete.addEventListener('click', () => {
-      this._handleCardDelete()
-    })
+
+    this._element
+      .querySelector(".cards__button-delete")
+      .addEventListener("click", () => {
+        this._handleCardDelete()
+      });
+
+
+    this._element
+      .querySelector(".cards__image")
+      .addEventListener("click", () => {
+        this._handleCardClick();
+      });
   }
 
   generateCard() {
     this._element = this._getTemplate();
-    const likesSum = this._element.querySelector('.cards__like-sum');
-    const imageCards = this._element.querySelector('.cards__image');
-    const titleCards = this._element.querySelector('.cards__title');
-
-    imageCards.src = this._link;
-    imageCards.alt = this._alt;
-    titleCards.textContent = this._name;
-
-    this._checkCard(this._owner);
-    this._likeCard(this._id);
-    if (this._likes.length === 0) {
-     likesSum.style.display = 'none';
-    }
-    likesSum.textContent = this._likes.length;
-
     this._setEventListeners();
 
+    const likesSum = this._element.querySelector('.cards__like-sum')
+
+    const cardImg = this._element.querySelector(".cards__image");
+    this._element.querySelector(".cards__title").textContent = this._name; 
+
+    cardImg.src = this._link;
+    cardImg.alt = this._name;
+  
+    this._checkCard(this._owner)
+    this._likeCard(this._id)
+
+    if (this._likes.length === 0) {
+      likesSum.style.display = 'none';
+    }
+    likesSum.textContent = this._likes.length;
     return this._element;
   }
 }
