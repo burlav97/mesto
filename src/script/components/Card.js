@@ -1,3 +1,4 @@
+//Спасибо за проверку!
 export default class Card {
   constructor({
     data,
@@ -27,7 +28,7 @@ export default class Card {
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector) 
-      .content.querySelector(".cards__item")
+      .content.querySelector('.cards__item')
       .cloneNode(true);
 
     return cardElement; // вернём DOM-элемент карточки
@@ -50,7 +51,7 @@ export default class Card {
 
   cardLike(sum) { //функция лайков
     const likesSum = this._element.querySelector('.cards__like-sum')
-    this._element.querySelector(".cards__button-like").classList.toggle("cards__button-like_active");
+    this._element.querySelector('.cards__button-like').classList.toggle('cards__button-like_active');
     if (sum === 0) {
       likesSum.style.display = 'none';
     } else {
@@ -66,21 +67,21 @@ export default class Card {
 
   _setEventListeners() {
     this._element
-      .querySelector(".cards__button-like")
-      .addEventListener("click", () => {
+      .querySelector('.cards__button-like')
+      .addEventListener('click', () => {
         this._clickLike();
       });
 
     this._element
-      .querySelector(".cards__button-delete")
-      .addEventListener("click", () => {
+      .querySelector('.cards__button-delete')
+      .addEventListener('click', () => {
         this._handleCardDelete()
       });
 
 
     this._element
-      .querySelector(".cards__image")
-      .addEventListener("click", () => {
+      .querySelector('.cards__image')
+      .addEventListener('click', () => {
         this._handleCardClick();
       });
   }
@@ -91,8 +92,8 @@ export default class Card {
 
     const likesSum = this._element.querySelector('.cards__like-sum')
 
-    const cardImg = this._element.querySelector(".cards__image");
-    this._element.querySelector(".cards__title").textContent = this._name; 
+    const cardImg = this._element.querySelector('.cards__image');
+    this._element.querySelector('.cards__title').textContent = this._name; 
 
     cardImg.src = this._link;
     cardImg.alt = this._name;

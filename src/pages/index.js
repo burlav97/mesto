@@ -194,7 +194,7 @@ Promise.all([api.getInfoUser(), api.getInitialCards()]) //загрузка да�
 
 
 function formValidation() { 
-  const formList = Array.from(document.querySelectorAll(".popup__form")); // сделаем из них массив методом Array.from
+  const formList = Array.from(document.querySelectorAll('.popup__form')); // сделаем из них массив методом Array.from
   formList.forEach((form) => { 
     const validator = new FormValidator({ 
       inputSelector: '.popup__item',
